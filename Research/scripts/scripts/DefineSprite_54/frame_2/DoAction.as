@@ -1,0 +1,15 @@
+xPos = _X;
+yPos = _Y;
+mcBackground._x -= xPos;
+mcBackground._y -= yPos;
+mcAnimation._x -= xPos;
+mcAnimation._y -= yPos;
+var stageWidth = Stage.width;
+var stageHeight = Stage.height;
+var centerStageX = stageWidth / 2;
+var centerStageY = stageHeight / 2;
+mcBackground._width = stageWidth;
+mcBackground._height = stageHeight;
+mcAnimation._x += centerStageX;
+mcAnimation._y += centerStageY - stageHeight / 10;
+stop();

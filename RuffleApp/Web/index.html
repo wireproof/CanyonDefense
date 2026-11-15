@@ -1,0 +1,21 @@
+<!doctype html>
+<html><head><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no"><title>Canyon Defense</title>
+<style>html,body{margin:0;width:100%;height:100%;background:#20160f;overflow:hidden;touch-action:none}#game{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}ruffle-player{width:100%;height:100%;touch-action:none}</style>
+<script>
+window.RufflePlayer={config:{autoplay:'on',unmuteOverlay:'hidden',letterbox:'on',backgroundColor:'#20160f',allowScriptAccess:false,openUrlMode:'deny',showSwfDownload:false,backgroundExecutionMode:'none'}};
+let canyonPlayer=null, canyonActive=true, canyonResume=false, canyonVolume=null;
+window.canyonSetActive=function(active){
+  if (canyonActive===active) return;
+  canyonActive=active;
+  if (!canyonPlayer) return;
+  const api=canyonPlayer.ruffle();
+  if (!active) { canyonResume=api.isPlaying; canyonVolume=api.volume; api.volume=0; api.suspend(); }
+  else { if (canyonResume) { canyonResume=false; api.resume(); } if (canyonVolume!==null) { api.volume=canyonVolume; canyonVolume=null; } }
+};
+</script><script src="ruffle.js"></script></head><body><div id="game"></div><script>
+window.addEventListener('load',()=>{
+  canyonPlayer=window.RufflePlayer.newest().createPlayer();
+  document.getElementById('game').appendChild(canyonPlayer);
+  canyonPlayer.ruffle().load({url:'game.swf'}).then(()=>{ if(!canyonActive) { canyonResume=canyonPlayer.ruffle().isPlaying; canyonPlayer.ruffle().suspend(); } }).catch(e=>document.body.innerHTML='<pre style="color:white">'+String(e)+'</pre>');
+});
+</script></body></html>

@@ -1,0 +1,15 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const html=fs.readFileSync('Experiment/RuffleApp/Web/index.html','utf8');
+const scripts=[...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(x=>x[1]);
+let playing=true,suspends=0,resumes=0,handler,volume=0.65;
+const api={get volume(){return volume},set volume(v){volume=v},get isPlaying(){return playing},suspend(){playing=false;suspends++},resume(){playing=true;resumes++},load(){return Promise.resolve()}};
+const player={ruffle(){return api}};
+const window={addEventListener(_,fn){handler=fn}};
+const document={getElementById(){return {appendChild(){}}}};
+const ctx=vm.createContext({window,document,console});
+vm.runInContext(scripts[0],ctx);window.RufflePlayer.newest=()=>({createPlayer:()=>player});vm.runInContext(scripts[1],ctx);handler();
+window.canyonSetActive(false);assert.equal(playing,false);assert.equal(suspends,1);assert.equal(volume,0);
+window.canyonSetActive(false);assert.equal(suspends,1);
+window.canyonSetActive(true);assert.equal(playing,true);assert.equal(resumes,1);assert.equal(volume,0.65);
+playing=false;window.canyonSetActive(false);window.canyonSetActive(true);assert.equal(resumes,1);
+console.log('Lifecycle bridge checks passed');
