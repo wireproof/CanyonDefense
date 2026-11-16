@@ -12,7 +12,7 @@ window.canyonSetActive=function(active){
   if (!active) { canyonResume=api.isPlaying; canyonVolume=api.volume; api.volume=0; api.suspend(); }
   else { if (canyonResume) { canyonResume=false; api.resume(); } if (canyonVolume!==null) { api.volume=canyonVolume; canyonVolume=null; } }
 };
-</script><script src="ruffle.js"></script></head><body><div id="game"></div><script>
+</script><script src="touch-position.js"></script><script src="ruffle.js"></script></head><body><div id="game"></div><script>
 window.addEventListener('load',()=>{
   canyonPlayer=window.RufflePlayer.newest().createPlayer();
   document.getElementById('game').appendChild(canyonPlayer);

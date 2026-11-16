@@ -19,8 +19,8 @@ targets:
       path: Info.plist
       properties:
         CFBundleDisplayName: Canyon TD
-        CFBundleShortVersionString: 0.3.4
-        CFBundleVersion: "7"
+        CFBundleShortVersionString: 0.3.5
+        CFBundleVersion: "8"
         NSAppTransportSecurity:
           NSAllowsLocalNetworking: true
         UILaunchScreen: {}
@@ -29,7 +29,7 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.wireproof.canyondefense
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
-        MARKETING_VERSION: 0.3.4
-        CURRENT_PROJECT_VERSION: 7
+        MARKETING_VERSION: 0.3.5
+        CURRENT_PROJECT_VERSION: 8
         GENERATE_INFOPLIST_FILE: NO
         TARGETED_DEVICE_FAMILY: '1,2'

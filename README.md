@@ -4,6 +4,8 @@ An experimental iOS compatibility build of the supplied Flash tower-defense game
 
 This is an early test build, not a finished remaster. Gameplay compatibility, touch controls, sound transitions, and the inside and cover layouts of iPhone Duo need further device testing. Live speed controls are not yet implemented. The iOS Home Screen label is Canyon TD; its bundle identifier is `com.wireproof.canyondefense`.
 
+Version 0.3.5 build 8 adds an experimental touch-position adjustment intended to allow a single drag from the toolbar. Device gameplay and the fix remain unverified.
+
 The `RuffleApp` directory contains the iOS wrapper and bundled web player. `Original` contains the supplied SWF, `Research` contains recovered assets and patches, and `Art` contains the custom icon. Ruffle's MIT and Apache license files accompany its runtime. The legacy native prototype is retained separately for reference.
 
 ## Building
